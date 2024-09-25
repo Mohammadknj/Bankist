@@ -1,0 +1,138 @@
+body {
+   font-family: "Nunito", sans-serif;
+   display: flex;
+   flex-direction: column;
+   /* align-items: center; */
+   /* justify-content: space-between; */
+   /* height: 800px; */
+   background-color: #f3f3f3;
+}
+
+header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 20px;
+   /* width: 100%; */
+   height: 100px;
+}
+header img {
+   width: 80px;
+   height: 80px;
+   background-size: cover;
+}
+header input {
+   border-radius: 20px;
+   border: none;
+   width: 100px;
+   height: 30px;
+   color: #444;
+   text-align: center;
+   font-size: 18px;
+   padding: 5px 20px;
+}
+header button {
+   border: none;
+   /* width: 50px; */
+   font-size: 30px;
+   cursor: pointer;
+   transition: 0.5s;
+   background-color: inherit;
+}
+header input:focus {
+   outline: none;
+   border: 1px solid #ccc;
+}
+.login-btn:hover {
+   color: #989696;
+}
+
+main {
+   /* background-color: ; */
+   width: 66%;
+   height: 650px;
+   margin: 0 17%;
+}
+.balance {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 100px;
+   margin-bottom: 30px;
+}
+.balance-expression {
+}
+.balance-expression p {
+   font-size: 20px;
+   margin: 0;
+   color: #888;
+}
+.balance-value {
+   font-size: 50px;
+}
+
+.accounts-tasks {
+   display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+}
+.movements {
+   width: 47%;
+   height: 500px;
+   background-color: white;
+   border-radius: 15px;
+}
+.tasks {
+   width: 47%;
+   /* background-color: blue; */
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-direction: column;
+}
+
+.task{
+   box-sizing: border-box;
+   background-color: tan;
+   width: 100%;
+   height: 30%;
+   border-radius: 10px;
+   padding: 10px 20px;
+}
+.transfer{
+   background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+.loan{
+   background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+.closeAcc{
+   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+.container{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+.input-exp{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 35%;
+   background-color: #39b385;
+}
+.input-exp p{
+   margin: 0;
+}
+.task-input{
+   background-color: rgba(255, 255, 255, 0.4);
+   border: none;
+   border-radius: 5px;
+
+}
+.task-input:focus{
+   background-color: rgba(255, 255, 255, 0.6)
+}
+.task-btn{
+   font-size: 20px;
+   padding: 10px;
+}
