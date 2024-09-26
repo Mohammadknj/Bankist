@@ -30,6 +30,7 @@ header input {
    text-align: center;
    font-size: 18px;
    padding: 5px 20px;
+   cursor: text;
 }
 header button {
    border: none;
@@ -38,6 +39,7 @@ header button {
    cursor: pointer;
    transition: 0.5s;
    background-color: inherit;
+   cursor: pointer;
 }
 header input:focus {
    outline: none;
@@ -181,7 +183,7 @@ main {
    background-color: rgba(246, 243, 243, 0.85);
 }
 
-footer{
+footer {
    margin-left: 17%;
    width: 40%;
    /* background-color: #39b385; */
@@ -189,15 +191,15 @@ footer{
    display: flex;
    justify-content: space-between;
 }
-.profit{
+.profit {
    margin: 0 20px;
    color: #66c873;
 }
-.loss{
+.loss {
    margin: 0 20px;
    color: #f5465d;
 }
-.sort-btn{
+.sort-btn {
    border: none;
    cursor: pointer;
    font-size: 20px;
@@ -205,10 +207,10 @@ footer{
    align-items: center;
    transition: 0.5s;
 }
-.sort-arrow{
+.sort-arrow {
    font-weight: 900;
    font-size: 30px;
 }
-.sort-btn:hover{
+.sort-btn:hover {
    color: #626161;
 }
