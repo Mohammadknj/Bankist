@@ -30,7 +30,7 @@ header input {
    text-align: center;
    font-size: 18px;
    padding: 5px 20px;
-   cursor: text;
+   /* cursor: text; */
 }
 header button {
    border: none;
