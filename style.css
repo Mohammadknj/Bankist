@@ -50,10 +50,11 @@ header input:focus {
 }
 
 main {
-   /* background-color: ; */
    width: 66%;
    height: 650px;
    margin: 0 17%;
+   transition: 0.5s;
+   opacity: 0;
 }
 .balance {
    display: flex;
@@ -186,10 +187,11 @@ main {
 footer {
    margin-left: 17%;
    width: 40%;
-   /* background-color: #39b385; */
+   transition: 0.5s;
    font-size: 30px;
    display: flex;
    justify-content: space-between;
+   opacity: 0;
 }
 .profit {
    margin: 0 20px;
