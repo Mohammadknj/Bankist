@@ -57,13 +57,15 @@ const closeAccBtn = document.querySelector(".closeAcc > .container").children[2]
 const profit = document.querySelector(".profit");
 const loss = document.querySelector(".loss");
 const sortBtn = document.querySelector(".sort-btn");
-
+let sorted = false;
+let currentAccIndex = -1;
 // main.style.opacity = "0";
 // footer.style.opacity = "0";
 date.innerHTML = Date();
 function displayMovements(account) {
    movements.innerHTML = "";
    let balance = 0;
+   sorted = false;
    account.movements.forEach(function (mov, i) {
       const type = mov > 0 ? "deposit" : "withdrawal";
       const html = `<div class="movement">
@@ -98,7 +100,6 @@ function isUpperCase(char) {
 let usernames = [];
 let PINs = [];
 for (const acc of accounts) {
-   // console.log(acc);
    let username = "";
    for (const letter of acc.owner) {
       if (isUpperCase(letter)) {
@@ -116,6 +117,7 @@ function checkEnter() {
          userName.value = "";
          PIN.value = "";
          welcome.textContent = `Welcome back, ${accounts[i].owner}`;
+         currentAccIndex = i;
          displayMovements(accounts[i]);
          displayFooter(accounts[i]);
          break;
@@ -123,8 +125,83 @@ function checkEnter() {
    }
 }
 loginBtn.addEventListener("click", checkEnter);
+
+function transfer() {
+   const money = Number(transferInput2.value);
+   if (money > 0 && Number(balanceValue.innerHTML.replace("$", "")) >= money) {
+      for (let i = 0; i < usernames.length; i++) {
+         if (i != currentAccIndex && transferInput1.value == usernames[i]) {
+            accounts[currentAccIndex].movements.push(-money);
+            accounts[i].movements.push(money);
+            balanceValue.innerHTML -= money;
+            loss.textContent += money;
+            displayMovements(accounts[currentAccIndex]);
+            displayFooter(accounts[currentAccIndex]);
+            transferInput1.value = "";
+            transferInput2.value = "";
+            break;
+         }
+      }
+   }
+}
+transferBtn.addEventListener("click", transfer);
+
+function loan() {
+   const money = Number(loanInput.value);
+   if (money > 0) {
+      accounts[currentAccIndex].movements.push(money);
+      balanceValue.innerHTML += money;
+      profit.textContent += money;
+      displayMovements(accounts[currentAccIndex]);
+      displayFooter(accounts[currentAccIndex]);
+      loanInput.value = "";
+   }
+}
+loanBtn.addEventListener("click", loan);
+
+function closeAcc() {
+   if (
+      closeAccInput1.value === usernames[currentAccIndex] &&
+      closeAccInput2.value == PINs[currentAccIndex]
+   ) {
+      main.style.opacity = "0";
+      footer.style.opacity = "0";
+      welcome.innerHTML = `Goodbye, ${accounts[currentAccIndex].owner}`;
+      usernames.splice(currentAccIndex, 1);
+      PINs.splice(currentAccIndex, 1);
+      accounts.splice(currentAccIndex, 1);
+      closeAccInput1.value = "";
+      closeAccInput2.value = "";
+   }
+}
+closeAccBtn.addEventListener("click", closeAcc);
+// This is not optimized
 document.addEventListener("keydown", (key) => {
    if (key.code === "Enter" || key.code === "NumpadEnter") {
-      checkEnter();
+      if (transferInput1.value && transferInput2.value) {
+         transfer();
+      } else if (loanInput.value) {
+         loan();
+      } else if (closeAccInput1.value && closeAccInput2.value) {
+         closeAcc();
+      } else if (userName.value && PIN.value) checkEnter();
    }
+});
+
+sortBtn.addEventListener("click", () => {
+   if (!sorted) {
+      const array = [...accounts[currentAccIndex].movements].sort(function (a, b) {
+         return a - b;
+      });
+      movements.innerHTML = "";
+      array.forEach(function (mov, i) {
+         const type = mov > 0 ? "deposit" : "withdrawal";
+         const html = `<div class="movement">
+      <div class="active-type ${type}">${i + 1} ${type.toUpperCase()}</div>
+      <div class="price">${mov}$</div>
+      </div>`;
+         movements.insertAdjacentHTML("afterbegin", html);
+      });
+      sorted = !sorted;
+   } else displayMovements(accounts[currentAccIndex]);
 });
